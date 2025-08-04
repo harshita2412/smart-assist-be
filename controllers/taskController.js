@@ -17,6 +17,7 @@ const createTask = async (req, res) => {
 };
 
 const getTasks = (req, res) => {
+    const {title, description, priority} = req;
     res.send("List of tasks");
 };
 
