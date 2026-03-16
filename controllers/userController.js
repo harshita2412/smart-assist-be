@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// ✅ Register a new user
+//Register a new user
 const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -44,7 +44,7 @@ const registerUser = async (req, res) => {
     }
 };
 
-// ✅ Login a user
+// Login a user
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-// ✅ Get user profile (Protected Route)
+// Get user profile (Protected Route)
 const getUserProfile = async (req, res) => {
     try {
         // req.user is added by authMiddleware
