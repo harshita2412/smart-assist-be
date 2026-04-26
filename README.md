@@ -51,3 +51,42 @@ docker compose up --build
 ```
 
 ## 🔐 Environment Variables
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+
+## 📡 API Endpoints
+
+### Auth
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/users/register | Register new user |
+| POST | /api/users/login | Login and get JWT token |
+
+### Tasks
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/tasks | Get all tasks |
+| POST | /api/tasks | Create a task |
+| PUT | /api/tasks/:id | Update a task |
+| DELETE | /api/tasks/:id | Delete a task |
+
+## ⚡ Lambda Function
+
+A scheduled Lambda function runs daily at 9am IST:
+- Connects to MongoDB Atlas
+- Fetches all pending tasks
+- Sends a summary email via AWS SES
+
+## 🐳 Docker
+
+```bash
+# Build image
+docker build -t smart-assist-app .
+
+# Run with compose
+docker compose up -d
+
+# Check logs
+docker compose logs app
+```
