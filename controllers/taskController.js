@@ -29,7 +29,8 @@ const taskService = require('../services/task.service.js');
 
 const createTask = async (req, res) => {
   try {
-    const task = await taskService.createTask(req.body);
+    // Attach the logged-in user (set by authMiddleware) — required by the Task model
+    const task = await taskService.createTask({ ...req.body, user: req.user.id });
     res.status(201).json(task);
   } catch(err){
     res.status(500).json({ message: err.message})
@@ -41,8 +42,7 @@ const createTask = async (req, res) => {
  */
 const getTasks = async (req, res) => {
   try {
-    //const tasks = await Task.find({ user: req.user.id }).sort({ createdAt: -1 });
-    const tasks = await taskService.getTasks();
+    const tasks = await taskService.getTasks(req.user.id);
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching tasks', error: error.message });

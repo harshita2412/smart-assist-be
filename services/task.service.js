@@ -11,8 +11,8 @@ const createTask = async(data) => {
   return task;
 };
 
-const getTasks = async () => {
-  return Task.find().sort({ createdAt: -1 });
+const getTasks = async (userId) => {
+  return Task.find({ user: userId }).sort({ createdAt: -1 });
 };
 
 module.exports = {

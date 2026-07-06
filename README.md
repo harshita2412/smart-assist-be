@@ -1,10 +1,12 @@
-# Smart Assist Backend
+# Smart Assist
 
-A production-grade RESTful API backend for task management, 
-fully deployed on AWS with a complete CI/CD pipeline.
+A full-stack task management app: an Express + MongoDB REST API
+deployed on AWS with a complete CI/CD pipeline, and a React frontend
+(in `client/`).
 
 ## 🏗️ Architecture
 
+- **Frontend:** React (Vite) — lives in `client/`
 - **Runtime:** Node.js + Express.js
 - **Database:** MongoDB Atlas (cloud)
 - **Containerization:** Docker
@@ -49,6 +51,17 @@ cp .env.example .env
 # Run with Docker
 docker compose up --build
 ```
+
+### Run the frontend
+```bash
+cd client
+npm install
+npm run dev
+# App runs at http://localhost:5173 and proxies /api to the backend on port 3000
+```
+
+For a production build (`npm run build` in `client/`), set `VITE_API_URL`
+to the deployed backend URL so API calls go to the right host.
 
 ## 🔐 Environment Variables
 PORT=3000
